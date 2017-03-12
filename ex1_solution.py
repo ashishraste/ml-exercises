@@ -10,12 +10,12 @@ from os.path import expanduser
 # 1. Start with a zero parameter vector (theta) having 2 parameters -> [2x1] matrix.
 # 2. Supply it to the computeCost function, along with known input matrix X [mx2] and
 #    known output values Y [mx1], to see how theta vector performs.
-# 3. Compute Hypothesis function H from theta and known input X, and is represented as [mx1] matrix.
+# 3. Compute Hypothesis function H from theta and known input X. It is represented as a [mx1] matrix.
 # 4. Run batch gradient descent, with a given number of iterations, where the parametric values of theta are 
 #    simultaneously updated to reduce the cost. 
 
-# Directory settings
 # Dataset for this script : ex1data1.txt.
+# Directory settings
 curDir = os.getcwd()  # ensure that you're running this script from the parent directory i.e. ml-exercises/.
 datasetPath = curDir + '/datasets/ex1data1.txt'
 
@@ -30,8 +30,7 @@ def computeCost(X,Y,theta):
   cost=0
   numSamples = len(Y)  
   diff = H-Y
-  for i in range(numSamples):
-    cost += diff[i][0] * diff[i][0]
+  cost = sum(diff**2)[0]  # computes sum squared value of the difference H-Y.
   return cost / (2*numSamples)
 
 
