@@ -27,7 +27,6 @@ iterations = 1500
 def computeCost(X,Y,theta):
   """ Computes cost of a hypothesis function H."""
   H = X.dot(theta)
-  cost=0
   numSamples = len(Y)  
   diff = H-Y
   cost = sum(diff**2)[0]  # computes sum squared value of the difference H-Y.
@@ -45,7 +44,7 @@ def runGradientDescent(X,Y,theta):
     sumDelta = (alpha/numSamples) * (X.T.dot(H-Y))  # returns [1x2] matrix
     theta = theta - sumDelta
     JVals[i] = computeCost(X, Y, theta)
-    print JVals[i]
+    # print JVals[i]
   return (JVals, theta)
   
 
@@ -55,6 +54,7 @@ def plotDataset(X,Y):
   plt.scatter(X,Y)
   plt.xlabel('population of city in 10000s');
   plt.ylabel('profit in $10000s')
+  plt.show()
 
 
 def plotCostVsIterations(JVals):
@@ -68,7 +68,7 @@ def plotCostVsIterations(JVals):
 
 if __name__=="__main__":
   ### Load data
-  data = pd.read_table(datasetPath, sep=',')
+  data = pd.read_table(datasetPath, sep=',', header=None)
   # data.describe()
   dmat = data.as_matrix()
   x = dmat[:,0]; Y = dmat[:,1]
@@ -86,7 +86,3 @@ if __name__=="__main__":
 
   ### Predict the profit for a given population of a city.
   # print np.array([[1,4]]).dot(optTheta)  # population and profit value returned are in 10000s.
-
-
-
-
