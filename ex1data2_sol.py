@@ -86,8 +86,6 @@ def runGradientDescent(X,Y,theta):
   """ Runs batch gradient descent algorithm for finding an optimal parameter vector theta."""
   # for given number of iterations, adjust theta values and compute their corresponding cost of usage
   JVals = np.zeros(shape=(iterations,1))
-  thetaVals = np.zeros(shape=(iterations,theta.shape[0]))
-  # print JVals.shape, thetaVals.shape
   for i in range(iterations):
     thetaVals[i] = theta.T
     H = X.dot(theta)
