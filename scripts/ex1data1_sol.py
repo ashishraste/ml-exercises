@@ -1,3 +1,4 @@
+
 #!/usr/bin/python
 
 import numpy as np
@@ -50,7 +51,8 @@ def runGradientDescent(X,Y,theta):
 
 def plotDataset(X,Y):
   """ Plots a scatter-plot between the known input and output values of the samples."""
-  plt.xkcd()
+  # plt.xkcd()
+  fig = plt.figure()
   plt.scatter(X,Y)
   plt.xlabel('population of city in 10000s');
   plt.ylabel('profit in $10000s')
@@ -59,7 +61,8 @@ def plotDataset(X,Y):
 
 def plotCostVsIterations(JVals):
   """ Plots a graph of the costs obtained after running gradient descent vs. the number of iterations."""
-  plt.xkcd()
+  # plt.xkcd()
+  fig = plt.figure()
   plt.plot(JVals)
   plt.xlabel('iterations')
   plt.ylabel('cost')
@@ -69,12 +72,13 @@ def plotCostVsIterations(JVals):
 if __name__=="__main__":
   ### Load data
   data = pd.read_table(datasetPath, sep=',', header=None)
-  # data.describe()
+  data.describe()
   dmat = data.as_matrix()
   x = dmat[:,0]; Y = dmat[:,1]
   x = np.reshape(x,(len(x),1))
   Y = np.reshape(Y,(len(Y),1))
-
+  plotDataset(x,Y)
+  
   ### Run linear regression using batch gradient descent for finding the best theta vector.
   m = len(Y) # number of samples
   ones = np.ones(shape=(m,1))
@@ -85,4 +89,4 @@ if __name__=="__main__":
   plotCostVsIterations(JVals)
 
   ### Predict the profit for a given population of a city.
-  # print np.array([[1,4]]).dot(optTheta)  # population and profit value returned are in 10000s.
+  print("sample profit prediction for a population of 40K : ${0:.2f}".format(np.array([[1,4]]).dot(optTheta)[0][0]*10000)) # population and profit value returned are in 10000s.
