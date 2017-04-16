@@ -21,11 +21,9 @@ datasetPath = curDir + '/datasets/ex2data1.txt'
 
 # Logistic regression variables
 X = Y = None
-xmeans = []; xstddevs = []
 initTheta = None
 numFeatures = None
 numSamples = None
-iterations = 400
 alpha = 0.01
 
 
@@ -102,22 +100,10 @@ def runGradientDescent(X,Y,initTheta):
   return optCost, np.reshape(optTheta,(optTheta.size,1))
 
 
-def plotCostVsIterations(JVals):
-  """ Plots a graph of the costs obtained after running gradient descent vs. the number of iterations."""
-  plt.figure()
-  # plt.xkcd()  
-  plt.plot(JVals)
-  plt.xlabel('iterations')
-  plt.ylabel('cost')
-  plt.title('gradient descent performance')
-  plt.show()
-
-
 if __name__=="__main__":
   pos,neg = loadData()
   plotData(pos,neg)
   J, optTheta = runGradientDescent(X,Y,initTheta)
-  # print optTheta.shape
   ## Sample prediction
   prob = sigmoid(np.dot(np.array([1,45,85]),optTheta))
   print prob
