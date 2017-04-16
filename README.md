@@ -34,8 +34,7 @@ More information about setting XKCD-style font for your system could be found [h
 
 ### Sample plots
 
-Logistic regression (exercise 2, data 1) plot and the computed decision boundary.
+1. Logistic regression with regularization plot and the computed decision boundary (exercise 2, data 2).
+![Exercise 2, Data 2](https://github.com/ashishraste/ml-exercises/blob/master/plots/ex2data2_plot.png) 
 
-
-
-Logistic regression with regularization (exercise 2, data 2) plot and the computed decision boundary.
+---
