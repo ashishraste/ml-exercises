@@ -1,16 +1,21 @@
-### Machine Learning exercises
+## Machine Learning exercises
 
 ---
 
-#### Source
+### Source
 The exercise problems are taken from [Andrew Ng's Machine Learning MOOC](https://www.coursera.org/learn/machine-learning/home). I look forward to add more problem sets from other sources in future.
 
-#### Folder layout
+---
+
+### Folder layout
 
 1. `datasets` : contains all the sample datasets which are used in the scripts. 
 2. `scripts` : contains the solutions in Python.
+3. `plots` : folder having some plots of the datasets and their respective  hypothesis.
 
-#### Steps for running a solution script
+---
+
+### Steps for running a solution script
 
 1. Switch to the parent directory.<br/>
 ```bash
@@ -26,3 +31,11 @@ python scripts/<script-name>.py
 More information about setting XKCD-style font for your system could be found [here](https://gist.github.com/ashishraste/e4ef570fba4fce30f04ee0a99f47ce00).
 
 ---
+
+### Sample plots
+
+Logistic regression (exercise 2, data 1) plot and the computed decision boundary.
+
+
+
+Logistic regression with regularization (exercise 2, data 2) plot and the computed decision boundary.
