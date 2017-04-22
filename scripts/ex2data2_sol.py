@@ -69,7 +69,7 @@ def plotData(pos,neg,optTheta=None,decisionBoundary=None):
     ## calculate hypothesis for those points
     H = sigmoid(powers.fit_transform(np.c_[xaxes.ravel(),yaxes.ravel()]).dot(optTheta))  
     H = H.reshape(xaxes.shape)
-    plt.contour(xaxes,yaxes,H,[0.5],linewidths=1, colors='b') 
+    plt.contour(xaxes,yaxes,H,[0.5],linewidths=1,colors='b',label='decision boundary') 
   plt.show()
 
 
