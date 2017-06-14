@@ -116,7 +116,7 @@ if __name__=="__main__":
   loadData()
   visualizeSamples()  # plot some random samples
   thetaMatrix = trainClassifier(X, Y, 10)
-  predict = predictAccuracy(X, thetaMatrix) 
-  print 'training accuracy = {}%'.format(np.mean(predict == Y.ravel())*100)
+  prediction = predictAccuracy(X, thetaMatrix) 
+  print 'training accuracy = {}%'.format(np.mean(prediction == Y.ravel())*100)
 
 
