@@ -3,11 +3,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-import pandas as pd 
+import pandas as pd
 import os
 
 # Steps
-# 1. Load the data, observed samples' shape is [numSamples x numFeatures]. 
+# 1. Load the data, observed samples' shape is [numSamples x numFeatures].
 # 2. Initialize parameteric vector theta whose shape is [numFeatures x 1].
 # 3. Normalize the individual features of X, using their mean and standard deviation values.
 # 4. Follow the usual batch gradient descent step, iterating to reduce the cost and to find an optimal theta vector.
@@ -15,7 +15,7 @@ import os
 # Dataset for this script : ex1data2.txt.
 # Directory settings
 curDir = os.getcwd()  # ensure that you're running this script from the parent directory i.e. ml-exercises/.
-datasetPath = curDir + '/datasets/ex1data2.txt'
+datasetPath = curDir + '/../datasets/ex1data2.txt'
 
 # Linear regression variables
 X = Y = None
@@ -38,9 +38,9 @@ def plotData():
   plt.show()
 
 
-def loadData():  
+def loadData():
   global X,Y,theta,numFeatures,numSamples
-  data = pd.read_table(datasetPath, sep=',', header=None)  
+  data = pd.read_table(datasetPath, sep=',', header=None)
   dmat = data.as_matrix()
   numFeatures = dmat.shape[1]-1  # one of them is Y
   numSamples = dmat.shape[0]
@@ -52,7 +52,7 @@ def loadData():
   X = np.concatenate((ones,x1,x2),axis=1)
   Y = np.reshape(y,(y.size,1))
   theta = np.zeros(shape=(X.shape[1],1))  # parameter vector to tune
-  # histograms of given data samples.  
+  # histograms of given data samples.
   # plt.xkcd()
   fig, ax = plt.subplots(1,2)
   ax[0].hist(x1,bins=10)
@@ -98,7 +98,7 @@ def runGradientDescent(X,Y,theta):
 def plotCostVsIterations(JVals):
   """ Plots a graph of the costs obtained after running gradient descent vs. the number of iterations."""
   plt.figure()
-  # plt.xkcd()  
+  # plt.xkcd()
   plt.plot(JVals)
   plt.xlabel('iterations')
   plt.ylabel('cost')

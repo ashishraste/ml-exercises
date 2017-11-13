@@ -10,8 +10,8 @@ theta1 = theta2 = None
 
 # dataset path
 curDir = os.getcwd()
-datasetPath = curDir + '/datasets/ex3data1.mat'
-weightsFile = curDir + '/datasets/ex3weights.mat'
+datasetPath = curDir + '/../datasets/ex3data1.mat'
+weightsFile = curDir + '/../datasets/ex3weights.mat'
 
 
 def loadData():
@@ -28,7 +28,7 @@ def loadData():
 
 def loadWeights():
   """
-  @brief      Loads pre-trained weights.	
+  @brief      Loads pre-trained weights.
   """
   global theta1, theta2
   mat = loadmat(weightsFile)
@@ -38,8 +38,8 @@ def loadWeights():
 
 
 def sigmoid(Z):
-  ''' 
-  Returns the sigmoid function values of the given input array. 
+  '''
+  Returns the sigmoid function values of the given input array.
   '''
   return (1 / (1 + np.exp(-Z)))
 

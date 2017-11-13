@@ -9,16 +9,16 @@ from scipy.optimize import minimize
 
 # Steps:
 # 1. Import the sample dataset, initialize X and Y matrices, append ones to input samples X.
-# 2. Initialize a theta-matrix, which will have the optimized theta parameter vectors, one for each of the classifier 
+# 2. Initialize a theta-matrix, which will have the optimized theta parameter vectors, one for each of the classifier
 #    targeting a single digit from 0-9.
-# 3. Run gradient descent using sigmoid hypothesis, using convex optimization techniques to find the optimum theta 
+# 3. Run gradient descent using sigmoid hypothesis, using convex optimization techniques to find the optimum theta
 #    parameter vectors.
 # 4. Test the trained classifiers.
 # 5. Shapes of matrices for reference:
 #    X = [5000 x 400] -> [5000 x 401] (additional column ones for X0).
 #    Y = [5000 x 1]             # has class labels whose values range from 1-10 for images having numbers 0-9 respectively.
 #    theta vector = [401 x 1]   # a single parameter vector for a single class label.
-#    theta matrix = [10 x 401]  # a matrix containing all the theta parameter vectors, each row for each of the 10 class labels. 
+#    theta matrix = [10 x 401]  # a matrix containing all the theta parameter vectors, each row for each of the 10 class labels.
 
 
 # globals, classifier parameters
@@ -28,12 +28,12 @@ regParam = 0.1
 
 # dataset path
 curDir = os.getcwd()
-datasetPath = curDir + '/datasets/ex3data1.mat'
+datasetPath = curDir + '/../datasets/ex3data1.mat'
 
 
 def sigmoid(Z):
-  ''' 
-  Returns the sigmoid function values of the given input array. 
+  '''
+  Returns the sigmoid function values of the given input array.
   '''
   return (1 / (1 + np.exp(-Z)))
 
@@ -49,7 +49,7 @@ def computeCost(theta,X,Y):
   firstTerm = np.log(H).T.dot(Y)
   secondTerm = np.log(1-H).T.dot(1-Y)
   regTerm = regParam/(2*numSamples) * (theta[1:].T.dot(theta[1:])).sum()
-  cost = -(1./numSamples) * (firstTerm + secondTerm).sum() + regTerm 
+  cost = -(1./numSamples) * (firstTerm + secondTerm).sum() + regTerm
   if np.isnan(cost):
     cost = np.inf
   return cost
@@ -60,7 +60,7 @@ def computeGradient(theta,X,Y):
   Computes the gradient of the cost function.
   Take note of reshaping theta to its original shape and flattening the gradient values.
   Returns:
-    gradient (numpy ndarray) : The computed gradient. A 1-D array having size equal to the number of features. 
+    gradient (numpy ndarray) : The computed gradient. A 1-D array having size equal to the number of features.
   '''
   H = sigmoid(X.dot(theta.reshape(-1,1)))
   gradient = (1./numSamples) * (X.T.dot(H-Y)) + (regParam/numSamples) * np.r_[[[0]],theta[1:].reshape(-1,1)]
@@ -75,7 +75,7 @@ def trainClassifier(X,Y,numClasses):
     Y (numpy ndarray) : The dataset's output values (labels).
     numClasses (int)  : Number of classes in the dataset. We are having 10 classes in our dataset.
 
-  Returns: 
+  Returns:
     thetaMatrix (numpy ndarray) : A 2-D array having the trained parameter vector for each of the 10 classes.
   '''
   initTheta = np.zeros((X.shape[1],1))
@@ -100,7 +100,7 @@ def loadData():
   X = mat['X']; Y = mat['y']
   numSamples = X.shape[0]
   X = np.c_[np.ones((numSamples,1)),X]
-  
+
 
 def visualizeSamples():
   '''
@@ -116,7 +116,5 @@ if __name__=="__main__":
   loadData()
   visualizeSamples()  # plot some random samples
   thetaMatrix = trainClassifier(X, Y, 10)
-  prediction = predictAccuracy(X, thetaMatrix) 
+  prediction = predictAccuracy(X, thetaMatrix)
   print 'training accuracy = {}%'.format(np.mean(prediction == Y.ravel())*100)
-
-

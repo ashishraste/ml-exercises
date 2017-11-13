@@ -3,7 +3,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd 
+import pandas as pd
 import os
 from os.path import expanduser
 
@@ -12,13 +12,13 @@ from os.path import expanduser
 # 2. Supply it to the computeCost function, along with known input matrix X [mx2] and
 #    known output values Y [mx1], to see how theta vector performs.
 # 3. Compute Hypothesis function H from theta and known input X. It is represented as a [mx1] matrix.
-# 4. Run batch gradient descent, with a given number of iterations, where the parametric values of theta are 
-#    simultaneously updated to reduce the cost. 
+# 4. Run batch gradient descent, with a given number of iterations, where the parametric values of theta are
+#    simultaneously updated to reduce the cost.
 
 # Dataset for this script : ex1data1.txt.
 # Directory settings
-curDir = os.getcwd()  # ensure that you're running this script from the parent directory i.e. ml-exercises/.
-datasetPath = curDir + '/datasets/ex1data1.txt'
+curDir = os.getcwd()  # ensure that you're running this script from the parent directory i.e. ml-exercises/.)
+datasetPath = curDir + '/../datasets/ex1data1.txt'
 
 ### Default parameters for linear regression
 alpha = 0.01
@@ -28,7 +28,7 @@ iterations = 1500
 def computeCost(X,Y,theta):
   """ Computes cost of a hypothesis function H."""
   H = X.dot(theta)
-  numSamples = len(Y)  
+  numSamples = len(Y)
   diff = H-Y
   cost = sum(diff**2)[0]  # computes sum squared value of the difference H-Y.
   return cost / (2*numSamples)
@@ -47,7 +47,7 @@ def runGradientDescent(X,Y,theta):
     JVals[i] = computeCost(X, Y, theta)
     # print JVals[i]
   return (JVals, theta)
-  
+
 
 def plotDataset(X,Y):
   """ Plots a scatter-plot between the known input and output values of the samples."""
@@ -78,7 +78,7 @@ if __name__=="__main__":
   x = np.reshape(x,(len(x),1))
   Y = np.reshape(Y,(len(Y),1))
   plotDataset(x,Y)
-  
+
   ### Run linear regression using batch gradient descent for finding the best theta vector.
   m = len(Y) # number of samples
   ones = np.ones(shape=(m,1))

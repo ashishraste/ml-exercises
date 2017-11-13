@@ -2,7 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd 
+import pandas as pd
 import os
 from scipy.optimize import fmin
 from scipy.optimize import fmin_bfgs
@@ -18,7 +18,7 @@ from sklearn.preprocessing import PolynomialFeatures
 # Dataset for this script : ex2data2.txt.
 # Directory settings
 curDir = os.getcwd()  # ensure that you're running this script from the parent directory i.e. ml-exercises/.
-datasetPath = curDir + '/datasets/ex2data2.txt'
+datasetPath = curDir + '/../datasets/ex2data2.txt'
 
 X = X1 = Y = None
 theta = None
@@ -30,7 +30,7 @@ powers = None  # polynomial powers for input features
 
 
 def loadData():
-  """ Loads the data from the text file and initializes the matrices of input features', 
+  """ Loads the data from the text file and initializes the matrices of input features',
   output values and the parameter-vector. """
   global X,X1,Y,theta,numFeatures,numSamples,powers
   data = pd.read_table(datasetPath, sep=',', header=None)
@@ -41,7 +41,7 @@ def loadData():
   #   np.reshape(dmat[:,0],(numSamples,1)),
   #   np.reshape(dmat[:,1],(numSamples,1))),axis=1)\
   X = dmat[:,0:2]
-  Y = np.reshape(dmat[:,2],(numSamples,1))  
+  Y = np.reshape(dmat[:,2],(numSamples,1))
   positives = np.where(Y==1)[0]
   negatives = np.where(Y==0)[0]
   ## Create new features
@@ -67,9 +67,9 @@ def plotData(pos,neg,optTheta=None,decisionBoundary=None):
     ## create xaxes, yaxes points between the min, max of the two dimensional input features
     xaxes, yaxes = np.meshgrid(np.linspace(x1min,x1max), np.linspace(x2min,x2max))
     ## calculate hypothesis for those points
-    H = sigmoid(powers.fit_transform(np.c_[xaxes.ravel(),yaxes.ravel()]).dot(optTheta))  
+    H = sigmoid(powers.fit_transform(np.c_[xaxes.ravel(),yaxes.ravel()]).dot(optTheta))
     H = H.reshape(xaxes.shape)
-    plt.contour(xaxes,yaxes,H,[0.5],linewidths=1,colors='b',label='decision boundary') 
+    plt.contour(xaxes,yaxes,H,[0.5],linewidths=1,colors='b',label='decision boundary')
   plt.show()
 
 
@@ -85,18 +85,18 @@ def computeCost(theta,X,Y,returnGradient=False):
   firstTerm = np.log(H).T.dot(Y)
   secondTerm = np.log(1-H).T.dot(1-Y)
   regTerm = regParam/(2*numSamples) * (theta[1:].T.dot(theta[1:])).sum()
-  cost = -(1./numSamples) * (firstTerm + secondTerm).sum() + regTerm 
+  cost = -(1./numSamples) * (firstTerm + secondTerm).sum() + regTerm
   if np.isnan(cost):
     cost = np.inf
   gradient = (1./numSamples) * X.T.dot(H-Y)  + (regParam/numSamples) * np.r_[[[0]],theta[1:].reshape(-1,1)]
   if returnGradient:
     return cost, gradient  # for validation
-  return cost  # for convex optimization functions 
+  return cost  # for convex optimization functions
 
 
-def runGradientDescent(X,Y,initTheta): 
+def runGradientDescent(X,Y,initTheta):
   """ Runs the batch gradient using convex optimization methods, adjusting the (sigmoid) hypothesis
-  to a best-possible parameter vector theta."""  
+  to a best-possible parameter vector theta."""
   myargs = (X,Y)
   theta = fmin(computeCost, x0=initTheta, args=myargs)  # Optimization using Nelder-Mead method.
   optTheta, optCost, _, _, _, _, _ = fmin_bfgs(computeCost, x0=initTheta, args=myargs, full_output=True)  # Optimization using BFGS.
@@ -114,4 +114,3 @@ if __name__=="__main__":
   plotData(pos, neg, optTheta, decisionBoundary=True)
   ## Sample prediction for two test scores, returns a probability of success.
   testPrediction = predict(powers.fit_transform(np.array([0.051267,0.69956])), optTheta).ravel()[0]
-  
